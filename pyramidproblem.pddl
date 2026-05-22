@@ -33,22 +33,23 @@
       (left-clear c9)  (right-clear c9)
       (left-clear c10) (right-clear c10)
 
-      ; Counter: all 10 cubes are currently on the ground
-      (= (cubes-on-ground) 10)
    )
 
-   ; Goal: every cube must be properly supported (on ground or on two cubes).
-   ; The metric drives the planner to minimise how many end up on the ground,
-   ; which forces it to stack them as high as possible.
+   ; Goal: pyramid 4-3-2-1 with 10 cubes.
+   ; Base (4): c1 c2 c3 c4 on ground
+   ; Row 2 (3): c5 on (c1,c2), c6 on (c2,c3), c7 on (c3,c4)
+   ; Row 3 (2): c8 on (c5,c6), c9 on (c6,c7)
+   ; Top  (1): c10 on (c8,c9)
    (:goal
       (and
-         (stable c1)  (stable c2)  (stable c3)  (stable c4)
-         (stable c5)  (stable c6)  (stable c7)
-         (stable c8)  (stable c9)
-         (stable c10)
+         (on-ground c1)  (on-ground c2)  (on-ground c3)  (on-ground c4)
+         (on-cubes c5 c1 c2)
+         (on-cubes c6 c2 c3)
+         (on-cubes c7 c3 c4)
+         (on-cubes c8 c5 c6)
+         (on-cubes c9 c6 c7)
+         (on-cubes c10 c8 c9)
       )
    )
-
-   (:metric minimize (cubes-on-ground))
 
 )

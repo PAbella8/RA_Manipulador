@@ -1,12 +1,8 @@
 (define (domain pyramidmanipulation)
 
-(:requirements :typing :numeric-fluents)
+(:requirements :typing)
 
 (:types cube robot)
-
-(:functions
-   (cubes-on-ground)   ; tracks how many cubes are currently on the ground
-)
 
 (:predicates
    (hand-empty ?rob - robot)
@@ -31,7 +27,6 @@
       (not (hand-empty ?rob))
       (not (on-ground ?c))
       (not (stable ?c))
-      (decrease (cubes-on-ground) 1)
    )
 )
 
@@ -43,7 +38,6 @@
       (stable ?c)
       (hand-empty ?rob)
       (not (holding ?rob ?c))
-      (increase (cubes-on-ground) 1)
    )
 )
 
