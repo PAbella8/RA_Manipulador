@@ -10,11 +10,6 @@
       (hand-empty robot1)
       (= (total-cost) 0)
 
-      ; Level hierarchy
-      (next-level l0 l1)
-      (next-level l1 l2)
-      (next-level l2 l3)
-
       ; All cubes start in storage: not placed, not stable, no slots defined
       (stored c1)  (stored c2)  (stored c3)  (stored c4)
       (stored c5)  (stored c6)  (stored c7)
