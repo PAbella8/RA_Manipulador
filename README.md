@@ -36,9 +36,8 @@ menú que encadena:
 Antes de usar el dashboard, cada miembro del grupo debe editar
 `dashboard/config.py`:
 
-- `USE_WSL`: `True` si ROS2/Kautham corren en WSL desde Windows (caso habitual
-  del grupo). Pon `False` si los ejecutas en Linux nativo, macOS, o si vas a
-  correr este propio dashboard ya dentro de WSL/Linux (sin pasar por `wsl.exe`).
+- `USE_WSL`: `True` si ROS2/Kautham corren en WSL desde Windows. Debe ponerse en `False` si se ejecutan en Linux nativo, macOS, o si se va a
+  ejecutar este propio dashboard ya dentro de WSL/Linux (sin pasar por `wsl.exe`).
 - `REPO_PATH`: ruta absoluta a la raíz de este repositorio. Si `USE_WSL=True`,
   en notación de Windows (`C:\Users\...`); si `USE_WSL=False`, en notación
   normal de Linux/macOS (`/home/usuario/...`).
@@ -54,22 +53,20 @@ la instalación de Kautham/ktmpb sea distinta de la habitual.
 
 Kautham busca los modelos de los objetos dentro de su propia carpeta de
 instalación (`/usr/share/kautham/demos/models/...`), que pertenece a `root` y
-no es accesible para el dashboard sin contraseña. Por eso, **cada miembro del
-grupo debe copiar manualmente, una sola vez (o cuando cambien), los ficheros
-de `objects/` a esa carpeta**, ejecutando en una terminal (se pedirá la
-contraseña de `sudo`):
+no es accesible para el dashboard sin contraseña (es necesario usar `sudo`). Por eso, **es necesario copiar manualmente, una sola vez (o varias si se hacen cambios en estos modelos fuera de su carpeta), los ficheros
+de `objects/` a esa carpeta**, ejecutando en un terminal:
 
 Si usas WSL desde Windows:
 ```
-wsl -d Ubuntu-24.04 -- sudo cp "/mnt/c/ruta/a/tu/repo/objects/cupCylinder.urdf" "/mnt/c/ruta/a/tu/repo/objects/cupCylinder.wrl" "/mnt/c/ruta/a/tu/repo/objects/cupCylinderC10.urdf" "/mnt/c/ruta/a/tu/repo/objects/cupCylinderC10.wrl" /usr/share/kautham/demos/models/obstacles/TMP/
+wsl -d Ubuntu-24.04 -- sudo cp "/mnt/c/ruta/a/su/repo/objects/cupCylinder.urdf" "/mnt/c/ruta/a/su/repo/objects/cupCylinder.wrl" "/mnt/c/ruta/a/su/repo/objects/cupCylinderC10.urdf" "/mnt/c/ruta/a/su/repo/objects/cupCylinderC10.wrl" /usr/share/kautham/demos/models/obstacles/TMP/
 ```
-Sustituye `/mnt/c/ruta/a/tu/repo` por la ruta de tu repositorio convertida a
+Sustituya `/mnt/c/ruta/a/tu/repo` por la ruta de su repositorio convertida a
 formato WSL (la misma que `REPO_PATH` en `config.py`, con `C:\...` ->
 `/mnt/c/...` y las `\` cambiadas por `/`).
 
-Si usas Linux nativo, macOS, o ya estás dentro de WSL/Linux:
+Si se está usando Linux nativo, macOS, o ya se está trabajando dentro de WSL/Linux:
 ```
-sudo cp /ruta/a/tu/repo/objects/cupCylinder.urdf /ruta/a/tu/repo/objects/cupCylinder.wrl /ruta/a/tu/repo/objects/cupCylinderC10.urdf /ruta/a/tu/repo/objects/cupCylinderC10.wrl /usr/share/kautham/demos/models/obstacles/TMP/
+sudo cp /ruta/a/su/repo/objects/cupCylinder.urdf /ruta/a/su/repo/objects/cupCylinder.wrl /ruta/a/su/repo/objects/cupCylinderC10.urdf /ruta/a/su/repo/objects/cupCylinderC10.wrl /usr/share/kautham/demos/models/obstacles/TMP/
 ```
 
 ### Uso
@@ -78,4 +75,4 @@ sudo cp /ruta/a/tu/repo/objects/cupCylinder.urdf /ruta/a/tu/repo/objects/cupCyli
 python dashboard/dashboard.py
 ```
 
-Y elige la opción del menú que necesites.
+Y escoja la opción del menú que necesite.
