@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+
+<Problem name="OMPL_RRTConnect_pyramid_ur3">
+
+	<Robot robot="/robots/robot_instances/UR_robotiq_85_gripper/ur3_robotiq_85_gripper.urdf.xacro"
+		scale="1.0">
+		<KauthamName name="ur3_right" />
+		<Home TH="1.570796327" WZ="1.0" WY="0.0" WX="0.0" Z="0.0" Y="0.0" X="0.37" />
+		<ViewLink name="robotiq_85_base_link" />
+	</Robot>
+
+	<Obstacle obstacle="/obstacles/chess/flat_chessboard/flat_chessboard.urdf" scale="1.0">
+		<KauthamName name="flat_chessboard" />
+		<!-- Z bajado 0.0 -> -0.01 como prueba: margen de seguridad para evitar colisiones de PLACE cerca de la altura de la mesa -->
+		<Home TH="1.570796327" WZ="1.0" WY="0.0" WX="0.0" Z="-0.01" Y="0.0" X="0.0" />
+	</Obstacle>
+
+	<!-- 10 cubes in storage area: positions derived from real robot TCP measurements -->
+	<!-- Row 1 (Y~0.192): C1-C5 | Row 2 (Y~0.271): C6-C10 -->
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube1" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.192" X="-0.101" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube2" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.192" X="-0.039" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube3" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.195" X="0.033" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube4" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.187" X="0.103" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube5" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.186" X="0.174" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube6" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.278" X="-0.095" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube7" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.274" X="-0.029" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube8" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.269" X="0.042" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube9" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.272" X="0.113" />
+	</Obstacle>
+
+	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+		<KauthamName name="cube10" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.264" X="0.179" />
+	</Obstacle>
+
+	<Controls robot="controls/right_ur3_with_gripper.cntr" />
+
+	<Planner>
+		<Parameters>
+			<Name>omplRRTConnect</Name>
+			<Parameter name="_Cspace Drawn">0</Parameter>
+			<Parameter name="_Incremental (0/1)">0</Parameter>
+			<Parameter name="_Max Planning Time">10</Parameter>
+			<Parameter name="_Path Drawn (0/1)">1</Parameter>
+			<Parameter name="_Simplify Solution">2</Parameter>
+			<Parameter name="_Speed Factor">1</Parameter>
+			<Parameter name="Range">0.5</Parameter>
+		</Parameters>
+		<Queries>
+			<!-- Sample query: home position -> pick cube1 from storage (real robot calibrated) -->
+			<Query>
+				<RobotControl name="ur3_right_shoulder_pan_joint"  init="0.500" goal="0.362" />
+				<RobotControl name="ur3_right_shoulder_lift_joint" init="0.375" goal="0.304" />
+				<RobotControl name="ur3_right_elbow_joint"         init="0.500" goal="0.395" />
+				<RobotControl name="ur3_right_wrist_1_joint"       init="0.375" goal="0.376" />
+				<RobotControl name="ur3_right_wrist_2_joint"       init="0.500" goal="0.624" />
+				<RobotControl name="ur3_right_wrist_3_joint"       init="0.500" goal="0.988" />
+				<RobotControl name="ur3_right_gripper_joint"       init="0.500" goal="0.813" />
+			</Query>
+		</Queries>
+	</Planner>
+
+</Problem>

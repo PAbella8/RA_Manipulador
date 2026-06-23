@@ -11,58 +11,59 @@
 
 	<Obstacle obstacle="/obstacles/chess/flat_chessboard/flat_chessboard.urdf" scale="1.0">
 		<KauthamName name="flat_chessboard" />
-		<Home TH="1.570796327" WZ="1.0" WY="0.0" WX="0.0" Z="0.0" Y="0.0" X="0.0" />
+		<!-- Z bajado 0.0 -> -0.01 como prueba: margen de seguridad para evitar colisiones de PLACE cerca de la altura de la mesa -->
+		<Home TH="1.570796327" WZ="1.0" WY="0.0" WX="0.0" Z="-0.03" Y="0.0" X="0.0" />
 	</Obstacle>
 
-	<!-- 10 cubes in storage area: 2 rows of 5 (row 1: y=0.175, row 2: y=0.225) -->
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<!-- 10 cubes in storage area: positions derived from real robot TCP measurements (posiciones_rectificadas.txt) -->
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube1" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.175" X="0.125" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="-0.025" X="-0.088" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube2" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.175" X="0.175" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="-0.029" X="0.002" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube3" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.175" X="0.225" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="-0.018" X="0.083" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube4" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.175" X="0.275" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.059" X="-0.033" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube5" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.175" X="0.325" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.059" X="0.040" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube6" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="0.125" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.150" X="-0.030" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube7" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="0.175" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.148" X="0.040" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube8" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="0.225" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="-0.030" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube9" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="0.275" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="0.040" />
 	</Obstacle>
 
-	<Obstacle obstacle="/obstacles/chess/pawnB1/pawnB1.urdf" scale="1.0">
+	<Obstacle obstacle="/obstacles/TMP/cupCylinderC10.urdf" scale="1.0">
 		<KauthamName name="cube10" />
-		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="0.325" />
+		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="0.250" X="0.106" />
 	</Obstacle>
 
 	<Controls robot="controls/right_ur3_with_gripper.cntr" />
@@ -79,14 +80,14 @@
 			<Parameter name="Range">0.5</Parameter>
 		</Parameters>
 		<Queries>
-			<!-- Sample query: home position -> pick cube1 from storage -->
+			<!-- Sample query: home position -> pick cube1 from storage (real robot calibrated) -->
 			<Query>
-				<RobotControl name="ur3_right_shoulder_pan_joint"  init="0.500" goal="0.545" />
-				<RobotControl name="ur3_right_shoulder_lift_joint" init="0.375" goal="0.380" />
-				<RobotControl name="ur3_right_elbow_joint"         init="0.500" goal="0.835" />
-				<RobotControl name="ur3_right_wrist_1_joint"       init="0.375" goal="0.327" />
-				<RobotControl name="ur3_right_wrist_2_joint"       init="0.500" goal="0.375" />
-				<RobotControl name="ur3_right_wrist_3_joint"       init="0.500" goal="0.425" />
+				<RobotControl name="ur3_right_shoulder_pan_joint"  init="0.500" goal="0.405" />
+				<RobotControl name="ur3_right_shoulder_lift_joint" init="0.375" goal="0.320" />
+				<RobotControl name="ur3_right_elbow_joint"         init="0.500" goal="0.368" />
+				<RobotControl name="ur3_right_wrist_1_joint"       init="0.375" goal="0.367" />
+				<RobotControl name="ur3_right_wrist_2_joint"       init="0.500" goal="0.623" />
+				<RobotControl name="ur3_right_wrist_3_joint"       init="0.500" goal="0.531" />
 				<RobotControl name="ur3_right_gripper_joint"       init="0.500" goal="0.813" />
 			</Query>
 		</Queries>

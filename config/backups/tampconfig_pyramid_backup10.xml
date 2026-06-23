@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<Config>
+    <Problemfiles>
+        <kautham name="OMPL_RRTConnect_pyramid_ur3.xml" />
+        <pddldomain name="ff-domains/pyramiddomain.pddl" />
+        <pddlproblem name="ff-domains/pyramidproblem" />
+        <graspit name="" />
+    </Problemfiles>
+    <States>
+        <!-- 10 cubes in storage: positions from real robot TCP measurements -->
+        <!-- Row 1 (Y~0.192): C1-C5 | Row 2 (Y~0.271): C6-C10 -->
+        <Initial>
+            <Object name="C1"  kthname="cube1">  -0.101 0.192 0.025 0 0 0 1</Object>
+            <Object name="C2"  kthname="cube2">  -0.039 0.192 0.025 0 0 0 1</Object>
+            <Object name="C3"  kthname="cube3">   0.033 0.195 0.025 0 0 0 1</Object>
+            <Object name="C4"  kthname="cube4">   0.103 0.187 0.025 0 0 0 1</Object>
+            <Object name="C5"  kthname="cube5">   0.174 0.186 0.025 0 0 0 1</Object>
+            <Object name="C6"  kthname="cube6">  -0.095 0.278 0.025 0 0 0 1</Object>
+            <Object name="C7"  kthname="cube7">  -0.029 0.274 0.025 0 0 0 1</Object>
+            <Object name="C8"  kthname="cube8">   0.042 0.269 0.025 0 0 0 1</Object>
+            <Object name="C9"  kthname="cube9">   0.113 0.272 0.025 0 0 0 1</Object>
+            <Object name="C10" kthname="cube10">  0.179 0.264 0.025 0 0 0 1</Object>
+            <Robot name="ur3_right" controlfile="controls/right_ur3_with_gripper.cntr"> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </Robot>
+        </Initial>
+    </States>
+    <Actions>
+        <!-- ===== PICK FROM STORAGE (real robot calibrated, normalized via Normalizador.py) ===== -->
+        <Pick robot="ROBOT1" object="C1" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube1 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.362 0.304 0.395 0.376 0.624 0.988 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C2" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube2 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.361 0.330 0.317 0.390 0.623 0.982 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C3" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube3 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.358 0.349 0.256 0.399 0.624 0.982 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C4" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube4 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.354 0.369 0.201 0.407 0.625 0.978 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C5" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube5 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.349 0.388 0.167 0.404 0.625 0.972 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C6" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube6 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.350 0.284 0.474 0.358 0.622 0.971 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C7" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube7 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.346 0.310 0.381 0.372 0.624 0.969 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C8" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube8 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.342 0.336 0.291 0.394 0.625 0.966 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C9" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube9 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.335 0.352 0.239 0.404 0.625 0.961 0.813 </GraspControls>
+        </Pick>
+        <Pick robot="ROBOT1" object="C10" region="STORAGE">
+            <Rob> ur3_right </Rob>
+            <Obj> cube10 </Obj>
+            <Link> robotiq_85_base_link </Link>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.328 0.367 0.205 0.405 0.624 0.949 0.813 </GraspControls>
+        </Pick>
+
+        <!-- ===== PLACE ON PYRAMID (real robot calibrated) ===== -->
+        <!-- Row 1 (4 cubes, table): C1-C4 -->
+        <!-- Row 2 (3 cubes, level 2): C5-C7 -->
+        <!-- Row 3 (2 cubes, level 3): C8 + C9 -->
+        <!-- Row 4 (top): C10 -->
+        <Place robot="ROBOT1" object="C1" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube1 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.442 0.363 0.220 0.402 0.626 0.943 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C2" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube2 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.452 0.351 0.249 0.399 0.626 0.952 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C3" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube3 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.458 0.338 0.289 0.393 0.626 0.956 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C4" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube4 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.464 0.321 0.341 0.383 0.626 0.961 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C5" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube5 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.461 0.329 0.363 0.364 0.626 0.958 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C6" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube6 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.455 0.348 0.306 0.374 0.626 0.952 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C7" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube7 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.447 0.362 0.271 0.377 0.626 0.944 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C8" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube8 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.452 0.353 0.342 0.351 0.626 0.954 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C9" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube9 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.460 0.333 0.401 0.342 0.626 0.966 0.813 </GraspControls>
+        </Place>
+        <Place robot="ROBOT1" object="C10" region="PYRAMID">
+            <Rob> ur3_right </Rob>
+            <Obj> cube10 </Obj>
+            <Cont>controls/right_ur3_with_gripper.cntr</Cont>
+            <HomeControls> 0.500 0.375 0.500 0.375 0.500 0.500 0.813 </HomeControls>
+            <GraspControls grasp="topgrasp"> 0.659 0.419 0.543 0.432 0.377 0.911 0.813 </GraspControls>
+        </Place>
+    </Actions>
+</Config>

@@ -100,7 +100,7 @@ def pinza40UR3():
   on_dataProcess_thrd=0
   ON_DEVICE_ID_MISSING=0
   ON_INIT_WATCHDOG_HZ=5
-  ON_INIT_TIMEOUT=500
+  ON_INIT_TIMEOUT=3000
   on_robot_TCP_offset=ON_ZEROFRAME
   on_tcp_offset_actual=ON_ZEROFRAME
   on_cog_actual=ON_ZEROFRAME
@@ -329,7 +329,7 @@ def pinza40UR3():
   exit_critical
   end 
   def on_set_rtde_watchdog(updateHz=ON_INIT_WATCHDOG_HZ):
-  local effect="stop"
+  local effect="ignore"
   if(updateHz<1):
   effect="ignore"
   end 
@@ -1474,7 +1474,7 @@ def pinza40UR3():
     #   Source: OnRobot, 5.17.1, OnRobot A/S
     #   Type: Agarre RG
     $ 2 "Agarre RG"
-on_return = rg_grip(40.0, 40.0, tool_index = 0, blocking = True, depth_comp = False, popupmsg = True)
+on_return = rg_grip(75.0, 40.0, tool_index = 0, blocking = True, depth_comp = False, popupmsg = True)
 rg_payload_set(mass = 0.0, tool_index = 0, use_guard = True)
     # end: URCap Program Node
   end
