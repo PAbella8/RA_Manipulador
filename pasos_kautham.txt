@@ -1,0 +1,11 @@
+Primero se ejecuta "cd /home/jabel/Universidad/6C/RA/P4/ws_tamp/" para asegurarse que estamos en el directorio "ws_tamp".
+
+Posteriormente se ejecutan estos tres comandos:
+
+colcon build --symlink-install
+
+source install/setup.bash
+
+ros2 launch ktmpb_client ktmpb_full.launch.py test:=true models_folder_path:=/usr/share/kautham/demos/models scenario_folder_path:=/home/jabel/Universidad/6C/RA/P4/ws_tamp/src/task_and_motion_planning2/ktmpb/ktmpb_demos/OMPL_geometric_demos/chess_ur3_robotiq tamp_config_filename:=tampconfig_pyramid.xml
+
+En este último hay que tener en cuanta que hay dos paths absolutos, el de models_folder_path y el de scenario_folder_path. El primero yo creo que no debería dar problemas, pero el segundo debe variar en función del usuario, aunque ya lo tendríamos que tener porque es el path a chess_ur3_robotiq.
