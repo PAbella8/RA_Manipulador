@@ -7,7 +7,7 @@
         <graspit name="" />
     </Problemfiles>
     <States>
-        <!-- 10 cubes in storage: positions from real robot TCP measurements (posiciones_rectificadas.txt) -->
+        <!-- 10 cubos en almacenamiento: posiciones obtenidas de mediciones reales del TCP del robot -->
         <Initial>
             <Object name="C1"  kthname="cube1">  -0.088 -0.025 0.025 0 0 0 1</Object>
             <Object name="C2"  kthname="cube2">   0.002 -0.029 0.025 0 0 0 1</Object>
@@ -23,7 +23,7 @@
         </Initial>
     </States>
     <Actions>
-        <!-- ===== PICK FROM STORAGE (real robot calibrated, normalized via Normalizador.py) ===== -->
+        <!-- RECOGER DEL ALMACÉN (calibrado con el robot real, normalizado con Normalizador.py) -->
         <Pick robot="ROBOT1" object="C1" region="STORAGE">
             <Rob> ur3_right </Rob>
             <Obj> cube1 </Obj>
@@ -105,11 +105,11 @@
             <GraspControls grasp="topgrasp"> 0.343 0.356 0.257 0.388 0.626 0.966 0.813 </GraspControls>
         </Pick>
 
-        <!-- ===== PLACE ON PYRAMID (real robot calibrated) ===== -->
-        <!-- Row 1 (4 cubes, table): C1-C4 -->
-        <!-- Row 2 (3 cubes, level 2): C5-C7 -->
-        <!-- Row 3 (2 cubes, level 3): C8 + C9 -->
-        <!-- Row 4 (top): C10 -->
+        <!-- COLOCAR EN LA PIRÁMIDE (calibrado con el robot real) -->
+        <!-- Fila 1 (4 cubos, mesa): C1-C4 -->
+        <!-- Fila 2 (3 cubos, nivel 2): C5-C7 -->
+        <!-- Fila 3 (2 cubos, nivel 3): C8 + C9 -->
+        <!-- Fila 4 (1 cubo, nivel 4): C10 -->
         <Place robot="ROBOT1" object="C1" region="PYRAMID">
             <Rob> ur3_right </Rob>
             <Obj> cube1 </Obj>

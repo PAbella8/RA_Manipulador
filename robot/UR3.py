@@ -14,12 +14,12 @@ DASHBOARD_PORT = 29999
 Abrir_pinza = 'open_grip.py'
 Cerrar_pinza = 'close_grip.py'
 
-# Espera bloqueante hasta que el robot termine de ejecutar el programa en curso.
-# Primero intenta confirmar que el programa ha EMPEZADO (evita una condicion de
+# Función que espera hasta que el robot termine de ejecutar el programa en curso.
+# Primero intenta confirmar que el programa ha empezado (evita una condicion de
 # carrera en la que el Dashboard Server todavia reporta el estado "parado" del
 # programa anterior). Si el programa es muy corto (p.ej. un script de pinza) puede
-# terminar antes de que lo detectemos, asi que ese primer chequeo tiene un timeout:
-# si se agota sin ver "true", asumimos que el programa ya ha terminado.
+# terminar antes de que sea detectado, es por esto que esa primera comprobación tiene un timeout:
+# si se agota sin recibir "true", se asume que el programa ya ha terminado.
 def wait_until_done(dash_sock, start_timeout=0.5):
     started = False
     deadline = time.time() + start_timeout
@@ -31,7 +31,7 @@ def wait_until_done(dash_sock, start_timeout=0.5):
             break
         time.sleep(0.02)
     if not started:
-        return  # programa demasiado corto para detectar el inicio: ya ha terminado
+        return  # en caso de que el programa sea demasiado corto para detectar el inicio: ya ha terminado
     while True:
         dash_sock.send(b"running\n")
         response = dash_sock.recv(1024).decode().strip()
@@ -60,7 +60,7 @@ sock.connect((HOST, PORT))
 dash_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 dash_sock.connect((HOST, DASHBOARD_PORT))
 
-# Trayectoria 1 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 1
 path_1 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.05190457427670091, -1.6008463434814075, -0.036060020023813276, -1.5751672383129345, 0.06720276458983382, 0.016937282132397175],
@@ -95,7 +95,7 @@ send_joint_path(path_1, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 2 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 2
 path_2 = [
     [-1.1938052083641209, -2.2619467105846507, -0.8293804605477053, -1.67132729170977, 1.545663585566178, 0.389557489045135],
     [-0.9948376736367674, -2.146754979953025, -0.6911503837897545, -1.6545721308906243, 1.288052987971815, 0.32463124087094586],
@@ -139,7 +139,7 @@ send_joint_path(path_2, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 3 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 3
 path_3 = [
     [-0.9173450548482194, -1.9226547039969537, -1.4199998794225863, -1.3697343969651499, 1.6084954386379744, 0.6157521601036002],
     [-0.7862957612984738, -1.872389221539517, -1.2171427537907884, -1.3984575297979709, 1.3787103759754067, 0.527787565803086],
@@ -154,7 +154,7 @@ path_3 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_3, sock, dash_sock)
 
-# Trayectoria 4 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 4
 path_4 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.04523893421169305, -1.5833626974092558, -0.05579468552775472, -1.5687857074965992, 0.06283185307179587, 0.019100883333825962],
@@ -191,7 +191,7 @@ send_joint_path(path_4, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 5 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 5
 path_5 = [
     [-1.1309733552923262, -1.8849555921538759, -1.394867138193868, -1.5205308443374594, 1.5707963267948966, 0.47752208334564905],
     [-0.9694057331077082, -1.840075697102593, -1.1956004041661725, -1.5277116275456648, 1.3463968515384828, 0.4093046428676992],
@@ -239,7 +239,7 @@ send_joint_path(path_5, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 6 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 6
 path_6 = [
     [-0.8042477193189868, -1.6587609210954106, -1.7592918860102844, -1.2943361732789942, 1.6084954386379744, 0.7414158662471921],
     [-0.6893551879877029, -1.6461945504810516, -1.507964473723101, -1.333830480924123, 1.3787103759754067, 0.6354993139261647],
@@ -254,7 +254,7 @@ path_6 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_6, sock, dash_sock)
 
-# Trayectoria 7 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 7
 path_7 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.03545511709051339, -1.564064342537204, -0.07068583470577033, -1.5622691467351528, 0.055202270913077785, 0.01884955592153876],
@@ -294,7 +294,7 @@ send_joint_path(path_7, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 8 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 8
 path_8 = [
     [-0.992743278534375, -1.3823007675795091, -1.9792033717615696, -1.332035285122072, 1.545663585566178, 0.5277875658030853],
     [-0.8509228101723215, -1.4092287046102787, -1.6964600329384882, -1.366144005361047, 1.3248545019138669, 0.45238934211693027],
@@ -345,7 +345,7 @@ send_joint_path(path_8, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 9 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 9
 path_9 = [
     [-0.6283185307179586, -1.3823007675795091, -2.0106192982974678, -1.3069025438933535, 1.6084954386379744, 0.8796459430051415],
     [-0.5385587406153931, -1.4092287046102787, -1.723387969969258, -1.344601655736431, 1.3787103759754067, 0.7539822368615499],
@@ -360,7 +360,7 @@ path_9 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_9, sock, dash_sock)
 
-# Trayectoria 10 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 10
 path_10 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.05428672105403162, -1.587886590830425, -0.051019464694298244, -1.567277743022876, 0.06132388859807275, 0.00904778684233861],
@@ -397,7 +397,7 @@ send_joint_path(path_10, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 11 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 11
 path_11 = [
     [-1.3571680263507906, -1.9980529276831085, -1.2754866173574562, -1.4828317324943825, 1.5330972149518187, 0.22619467105846525],
     [-1.163286879729249, -1.937016270413364, -1.0932742434492482, -1.4953981031087415, 1.3140833271015588, 0.19388114662154166],
@@ -450,7 +450,7 @@ send_joint_path(path_11, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 12 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 12
 path_12 = [
     [-0.35185837720205715, -1.0555751316061706, -2.2179644134343937, -1.419999879422586, 1.5959290680236151, 1.2189379495928394],
     [-0.3078760800518, -1.1199777810047613, -1.9407188617550943, -1.438849435344125, 1.3964379345206632, 1.0665707058937346],
@@ -466,7 +466,7 @@ path_12 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_12, sock, dash_sock)
 
-# Trayectoria 13 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 13
 path_13 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.04886921905584121, -1.574985116999683, -0.06259914250486329, -1.5638150097869192, 0.05678137833154884, 0.008843001543437945],
@@ -505,7 +505,7 @@ send_joint_path(path_13, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 14 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 14
 path_14 = [
     [-1.3194689145077128, -1.6838936623241292, -1.6901768476313088, -1.3823007675795091, 1.5330972149518187, 0.23876104167282453],
     [-1.1309733552923253, -1.6677369001056674, -1.4487230122554076, -1.4092287046102787, 1.3140833271015588, 0.2046523214338496],
@@ -549,7 +549,7 @@ send_joint_path(path_14, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 15 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 15
 path_15 = [
     [-0.8670795723907831, -1.7718582566246432, -1.3257520998148928, -1.6084954386379744, 1.6084954386379744, 0.6660176425610365],
     [-0.7225663103256527, -1.7383479349863522, -1.1047934165124107, -1.6022122533307948, 1.3404128655316454, 0.555014702134197],
@@ -563,7 +563,7 @@ path_15 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_15, sock, dash_sock)
 
-# Trayectoria 16 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 16
 path_16 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.023284745550136116, -1.5781883095092255, -0.017555958946531194, -1.569502729819889, 0.022545547278703216, 0.09221498436125335],
@@ -643,7 +643,7 @@ send_joint_path(path_16, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 17 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 17
 path_17 = [
     [-1.5833626974092558, -2.0734511513692633, -1.1938052083641213, -1.4828317324943825, 1.5330972149518187, 6.270618936565228],
     [-1.4902237152087114, -2.0438832205119475, -1.1235813725779966, -1.4880061203944128, 1.4429150258370058, 5.901758999120214],
@@ -700,7 +700,7 @@ send_joint_path(path_17, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 18 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 18
 path_18 = [
     [-0.7162831250184727, -1.4953981031087418, -1.6336281798666925, -1.5833626974092558, 1.6084954386379744, 0.8419468311620637],
     [-0.613956964301548, -1.5061692779210496, -1.4002527256000221, -1.5815675016072046, 1.3787103759754067, 0.721668712424626],
@@ -715,7 +715,7 @@ path_18 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_18, sock, dash_sock)
 
-# Trayectoria 19 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 19
 path_19 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.02294728546969936, -1.5738923891201735, -0.023129406782950942, -1.5678823857828712, 0.022218800216693025, 0.09087853531253953],
@@ -796,7 +796,7 @@ send_joint_path(path_19, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 20 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 20
 path_20 = [
     [-1.5833626974092558, -1.7844246272390025, -1.595929068023615, -1.3697343969651499, 1.5330972149518187, 6.270618936565228],
     [-1.4902237152087114, -1.7718582566246432, -1.5020508875516376, -1.381561569308076, 1.4429150258370058, 5.901758999120214],
@@ -855,7 +855,7 @@ send_joint_path(path_20, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 21 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 21
 path_21 = [
     [-0.49008845396000744, -1.2189379495928394, -1.8472564803107987, -1.633628179866692, 1.6084954386379744, 1.068141502220529],
     [-0.4200758176800064, -1.269203432050276, -1.583362697409256, -1.6246522008564355, 1.3787103759754067, 0.9155498590461677],
@@ -870,7 +870,7 @@ path_21 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_21, sock, dash_sock)
 
-# Trayectoria 22 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 22
 path_22 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.02741753588587456, -1.5814587018616255, -0.01313756927864823, -1.5711771259044225, 0.023038346126325143, 0.09139178628624853],
@@ -948,7 +948,7 @@ send_joint_path(path_22, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 23 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 23
 path_23 = [
     [-1.809557368467721, -2.27451308119901, -0.8670795723907831, -1.5959290680236151, 1.5205308443374594, 6.031857894892402],
     [-1.7031128173813845, -2.233117977998768, -0.8160748916619136, -1.5944506714807494, 1.4310878534940794, 5.677042724604614],
@@ -1001,7 +1001,7 @@ send_joint_path(path_23, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 24 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 24
 path_24 = [
     [-0.7162831250184727, -1.6210618092523337, -1.1623892818282235, -1.9226547039969537, 1.545663585566178, 0.8168140899333451],
     [-0.5969026041820605, -1.6126842288427607, -0.968657734856853, -1.864011641129944, 1.288052987971815, 0.6806784082777877],
@@ -1015,7 +1015,7 @@ path_24 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_24, sock, dash_sock)
 
-# Trayectoria 25 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 25
 path_25 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.028179134104926642, -1.5770795121020762, -0.02008715302749838, -1.5685115321377403, 0.023038346126325143, 0.09043978851243344],
@@ -1093,7 +1093,7 @@ send_joint_path(path_25, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 26 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 26
 path_26 = [
     [-1.8598228509251582, -1.9854865570687492, -1.3257520998148928, -1.419999879422586, 1.5205308443374594, 5.969026041820607],
     [-1.7504215067530902, -1.9610930141114638, -1.2477666821787228, -1.4288702586797808, 1.4310878534940794, 5.617906862889983],
@@ -1149,7 +1149,7 @@ send_joint_path(path_26, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 27 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 27
 path_27 = [
     [-0.515221195188726, -1.3697343969651499, -1.3885839528866883, -1.9603538158400315, 1.545663585566178, 1.068141502220529],
     [-0.429350995990605, -1.403244718603441, -1.1571532940722402, -1.8954275676658423, 1.288052987971815, 0.8901179185171075],
@@ -1163,7 +1163,7 @@ path_27 = [
 # Se envia la trayectoria a la controladora del robot
 send_joint_path(path_27, sock, dash_sock)
 
-# Trayectoria 28 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 28
 path_28 = [
     [0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0],
     [-0.029892730097793786, -1.5744139183353938, -0.02313354590370666, -1.5683211325829773, 0.02399034390014024, 0.08872619251956627],
@@ -1241,7 +1241,7 @@ send_joint_path(path_28, sock, dash_sock)
 with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 29 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 29
 path_29 = [
     [-1.97292018645439, -1.809557368467721, -1.5268140296446395, -1.4074335088082268, 1.5833626974092558, 5.855928706291374],
     [-1.8568660578394258, -1.795512601310496, -1.437001439665543, -1.4170430863368544, 1.4902237152087114, 5.511462311803647],
@@ -1293,7 +1293,7 @@ send_joint_path(path_29, sock, dash_sock)
 with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())
 time.sleep(1) # Margen de seguridad
 
-# Trayectoria 30 -- configuraciones (variables articulares, en radianes)
+# Trayectoria 30
 path_30 = [
     [-0.6660176425610365, -1.721592774167207, -0.6848671984825749, -2.312212193042088, 1.545663585566178, 0.9047786842338601],
     [-0.555014702134197, -1.6964600329384887, -0.5707226654021458, -2.1886428820008894, 1.288052987971815, 0.7539822368615501],

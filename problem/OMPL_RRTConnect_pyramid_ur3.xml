@@ -11,11 +11,11 @@
 
 	<Obstacle obstacle="/obstacles/chess/flat_chessboard/flat_chessboard.urdf" scale="1.0">
 		<KauthamName name="flat_chessboard" />
-		<!-- Z bajado 0.0 -> -0.01 como prueba: margen de seguridad para evitar colisiones de PLACE cerca de la altura de la mesa -->
+		<!-- Z en -0.03 como margen de seguridad para evitar colisiones de PLACE con la mesa -->
 		<Home TH="1.570796327" WZ="1.0" WY="0.0" WX="0.0" Z="-0.03" Y="0.0" X="0.0" />
 	</Obstacle>
 
-	<!-- 10 cubes in storage area: positions derived from real robot TCP measurements (posiciones_rectificadas.txt) -->
+	<!-- 10 cubos en el área de almacenamiento: posiciones obtenidas de mediciones reales del TCP del robot -->
 	<Obstacle obstacle="/obstacles/TMP/cupCylinder.urdf" scale="1.0">
 		<KauthamName name="cube1" />
 		<Home TH="0.0" WZ="1.0" WY="0.0" WX="0.0" Z="0.025" Y="-0.025" X="-0.088" />
@@ -80,7 +80,7 @@
 			<Parameter name="Range">0.5</Parameter>
 		</Parameters>
 		<Queries>
-			<!-- Sample query: home position -> pick cube1 from storage (real robot calibrated) -->
+			<!-- Consulta de ejemplo: posición home -> recoger cube1 del almacén (calibrado con el robot real) -->
 			<Query>
 				<RobotControl name="ur3_right_shoulder_pan_joint"  init="0.500" goal="0.405" />
 				<RobotControl name="ur3_right_shoulder_lift_joint" init="0.375" goal="0.320" />

@@ -4,7 +4,7 @@ def parse_xml_and_generate_code(xml_file, output_file):
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
-    # Cabecera exactamente igual a tu plantilla
+    # Cabecera
     generated_code = [
         "import socket",
         "import time",
@@ -22,12 +22,12 @@ def parse_xml_and_generate_code(xml_file, output_file):
         "Abrir_pinza = 'open_grip.py'",
         "Cerrar_pinza = 'close_grip.py'",
         "",
-        "# Espera bloqueante hasta que el robot termine de ejecutar el programa en curso.",
-        "# Primero intenta confirmar que el programa ha EMPEZADO (evita una condicion de",
+        "# Función que espera hasta que el robot termine de ejecutar el programa en curso.",
+        "# Primero intenta confirmar que el programa ha empezado (evita una condicion de",
         "# carrera en la que el Dashboard Server todavia reporta el estado \"parado\" del",
         "# programa anterior). Si el programa es muy corto (p.ej. un script de pinza) puede",
-        "# terminar antes de que lo detectemos, asi que ese primer chequeo tiene un timeout:",
-        "# si se agota sin ver \"true\", asumimos que el programa ya ha terminado.",
+        "# terminar antes de que sea detectado, es por esto que esa primera comprobación tiene un timeout:",
+        "# si se agota sin recibir \"true\", se asume que el programa ya ha terminado.",
         "def wait_until_done(dash_sock, start_timeout=0.5):",
         "    started = False",
         "    deadline = time.time() + start_timeout",
@@ -39,7 +39,7 @@ def parse_xml_and_generate_code(xml_file, output_file):
         "            break",
         "        time.sleep(0.02)",
         "    if not started:",
-        "        return  # programa demasiado corto para detectar el inicio: ya ha terminado",
+        "        return  # en caso de que el programa sea demasiado corto para detectar el inicio: ya ha terminado",
         "    while True:",
         "        dash_sock.send(b\"running\\n\")",
         "        response = dash_sock.recv(1024).decode().strip()",
@@ -101,7 +101,7 @@ def parse_xml_and_generate_code(xml_file, output_file):
             
             # Crear la variable "path_x" y enviarla tal como en la plantilla
             traj_name = f"path_{trajectory_counter}"
-            generated_code.append(f"# Trayectoria {trajectory_counter} -- configuraciones (variables articulares, en radianes)")
+            generated_code.append(f"# Trayectoria {trajectory_counter}")
             generated_code.append(f"{traj_name} = [")
             for pt in points:
                 generated_code.append(f"    {pt},")
