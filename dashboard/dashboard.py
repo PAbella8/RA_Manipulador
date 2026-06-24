@@ -13,7 +13,7 @@ ver el interruptor USE_WSL en config.py.
 La ejecución del programa en el robot real queda fuera de este dashboard
 y se sigue haciendo a mano (ejecutando UR3.py por separado).
 
-Antes de usarlo, edita config.py con las rutas de tu propio ordenador.
+Antes de usarlo, debe editarse config.py con las rutas del ordenador correspondiente.
 """
 
 import subprocess
@@ -65,9 +65,12 @@ def action_recalc():
 def action_sync_to_wsl():
     repo = repo_shell_path()
     scenario = config.scenario_folder_path()
+    ff_domains = f"{scenario}/ff-domains"
     cmd = (
         f'cp "{repo}/config/tampconfig_pyramid.xml" "{scenario}/tampconfig_pyramid.xml" && '
-        f'cp "{repo}/problem/OMPL_RRTConnect_pyramid_ur3.xml" "{scenario}/OMPL_RRTConnect_pyramid_ur3.xml"'
+        f'cp "{repo}/problem/OMPL_RRTConnect_pyramid_ur3.xml" "{scenario}/OMPL_RRTConnect_pyramid_ur3.xml" && '
+        f'cp "{repo}/pddl/pyramiddomain.pddl" "{ff_domains}/pyramiddomain.pddl" && '
+        f'cp "{repo}/pddl/pyramidproblem.pddl" "{ff_domains}/pyramidproblem"'
     )
     run_shell(cmd)
     print("Ficheros sincronizados con el workspace de ROS2.")
@@ -133,7 +136,7 @@ def print_menu():
 def main():
     while True:
         print_menu()
-        choice = input("\nElige una opción: ").strip()
+        choice = input("\nEscoja una opción: ").strip()
         if choice == "0":
             break
         try:
@@ -147,7 +150,7 @@ def main():
         _, action = MENU[index]
         try:
             action()
-        except Exception as exc:  # noqa: BLE001 - queremos seguir mostrando el menú aunque falle un paso
+        except Exception as exc:  # se sigue mostrando el menú aunque falle un paso
             print(f"\n¡Ha fallado el paso! {exc}")
 
 

@@ -1,9 +1,10 @@
 """
 Configuración del dashboard.
 
-Cada miembro del grupo debe ajustar las rutas absolutas de este fichero a su
+Cada usuario debe ajustar las rutas absolutas de este fichero a su
 propio ordenador antes de usar el dashboard. Las rutas relativas dentro del
-propio repositorio no hace falta cambiarlas, son iguales para todos.
+propio repositorio no hace falta cambiarlas, deberían mantenerse iguales sin 
+importar el dispositivo.
 """
 
 # Cómo se ejecutan los comandos de ROS2/Kautham (colcon, ros2 launch, cp...):

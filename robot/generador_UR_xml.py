@@ -10,7 +10,7 @@ def parse_xml_and_generate_code(xml_file, output_file):
         "import time",
         "",
         "# Dirección IP del robot UR",
-        "HOST = \"10.10.73.235\"",
+        "HOST = \"10.10.73.236\"",
         "",
         "# Puerto del servidor en el robot",
         "PORT = 30002",
@@ -79,14 +79,14 @@ def parse_xml_and_generate_code(xml_file, output_file):
             
             # Analizar las transiciones para mandar comandos de pinza usando sendall
             if previous_state == 'Transit' and current_state == 'Transfer':
-                # De moverse vacío a llevar algo = Cerrar pinza (Pick)
+                # Cerrar pinza (Pick)
                 generated_code.append("# Enviar archivo script cerrar pinza")
                 generated_code.append("with open(Cerrar_pinza, 'rb') as f: sock.sendall(f.read())")
                 generated_code.append("time.sleep(1) # Margen de seguridad")
                 generated_code.append("")
 
             elif previous_state == 'Transfer' and current_state == 'Transit':
-                # De llevar algo a moverse vacío = Abrir pinza (Place)
+                # Abrir pinza (Place)
                 generated_code.append("# Enviar archivo script abrir pinza")
                 generated_code.append("with open(Abrir_pinza, 'rb') as f: sock.sendall(f.read())")
                 generated_code.append("time.sleep(1) # Margen de seguridad")
@@ -99,7 +99,7 @@ def parse_xml_and_generate_code(xml_file, output_file):
                 ur3_joints = values[9:15]  # Coger solo del 10º al 15º
                 points.append(ur3_joints)
             
-            # Crear la variable "path_x" y enviarla tal como en la plantilla
+            # Crear la variable "path_x" y enviarla
             traj_name = f"path_{trajectory_counter}"
             generated_code.append(f"# Trayectoria {trajectory_counter}")
             generated_code.append(f"{traj_name} = [")
@@ -115,7 +115,6 @@ def parse_xml_and_generate_code(xml_file, output_file):
             previous_state = current_state
             trajectory_counter += 1
 
-    # Parte final del script exactamente igual a la plantilla
     generated_code.append("# Mensaje que se imprime cuando se finaliza la ejecución")
     generated_code.append("# de la trayectoria")
     generated_code.append("print(\"Trayectoria finalizada\")")

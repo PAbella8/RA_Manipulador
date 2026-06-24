@@ -2,7 +2,7 @@ import socket
 import time
 
 # Dirección IP del robot UR
-HOST = "10.10.73.235"
+HOST = "10.10.73.236"
 
 # Puerto del servidor en el robot
 PORT = 30002
