@@ -80,6 +80,9 @@ def action_run_simulation():
     scenario = config.scenario_folder_path()
     cmd = (
         f'cd "{config.WS_TAMP_PATH}" && '
+        # bash -c no es interactivo y no carga ~/.bashrc, así que hay que
+        # sourcear el underlay de ROS2 a mano para que "ros2" esté en el PATH.
+        f'source "{config.ROS_SETUP_BASH}" && '
         f"colcon build --symlink-install && "
         f"source install/setup.bash && "
         f"ros2 launch ktmpb_client ktmpb_full.launch.py test:=true "

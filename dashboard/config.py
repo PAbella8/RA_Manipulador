@@ -25,7 +25,7 @@ WSL_DISTRO = "Ubuntu-24.04"
 REPO_PATH = r"C:\Users\jabel\Documents\Universidad\6º_Cuatrimestre\RA\RA_Manipulador"
 
 # Ruta absoluta a la raíz del workspace de ROS2 (ws_tamp), en notación Linux
-# (la que entiende el bash donde corre ROS2 de verdad, tanto si es WSL como si
+# (la que entiende el bash donde corre ROS2, tanto si es WSL como si
 # es Linux nativo).
 WS_TAMP_PATH = "/home/jabel/Universidad/6C/RA/P4/ws_tamp"
 
@@ -40,6 +40,12 @@ TAMP_CONFIG_FILENAME = "tampconfig_pyramid.xml"
 # Carpeta de modelos de Kautham (instalación del sistema). Requiere haber copiado
 # antes los ficheros de objects/ ahí manualmente con sudo (ver README.md).
 MODELS_FOLDER_PATH = "/usr/share/kautham/demos/models"
+
+# Ruta al setup.bash del underlay de ROS2 (notación Linux). Es necesario porque
+# los comandos del dashboard se ejecutan con "bash -c", un shell no interactivo
+# que no carga automáticamente ~/.bashrc (donde normalmente se hace este source),
+# así que hay que sourcearlo explícitamente o "ros2" no se encuentra en el PATH.
+ROS_SETUP_BASH = "/opt/ros/jazzy/setup.bash"
 
 
 def scenario_folder_path() -> str:

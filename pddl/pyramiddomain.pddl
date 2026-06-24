@@ -1,6 +1,6 @@
 (define (domain pyramidmanipulation)
 
-(:requirements :typing :action-costs :negative-preconditions :disjunctive-preconditions :conditional-effects)
+(:requirements :typing :action-costs :conditional-effects :equality)
 
 (:types cube robot region)
 
@@ -11,10 +11,7 @@
    (holding ?rob - robot ?c - cube)
    (stored ?c - cube)
    (stable ?c - cube)
-   (right-of ?c1 - cube ?c2 - cube)
-   (slot-free ?c1 - cube ?c2 - cube)
-   (right-support-user ?rs - cube ?c - cube)
-   (right-support-used ?c - cube)
+   (can-place ?c - cube)
    (in-storage ?reg - region)
    (in-pyramid ?reg - region)
 )
@@ -34,32 +31,33 @@
    )
 )
 
-; Cubre todos los casos de colocacion:
-;   Primer cubo de una fila: (not (right-support-used ?ls)), ?prev es dummy
-;   Siguiente cubo de una fila: (right-support-user ?ls ?prev), ?prev es su vecino izquierdo
-; Los objetos de mesa (t0-t4) actuan como soportes del nivel del suelo en el problema.
 (:action place
-   :parameters (?rob - robot ?c - cube ?reg - region ?ls - cube ?rs - cube ?prev - cube)
+   :parameters (?rob - robot ?c - cube ?reg - region)
    :precondition (and
       (holding ?rob ?c)
       (in-pyramid ?reg)
-      (stable ?ls)
-      (stable ?rs)
-      (right-of ?ls ?rs)
-      (slot-free ?ls ?rs)
-      (or (not (right-support-used ?ls))
-          (right-support-user ?ls ?prev))
+      (can-place ?c)
    )
    :effect (and
       (stable ?c)
       (hand-empty ?rob)
       (not (holding ?rob ?c))
-      (not (slot-free ?ls ?rs))
-      (right-support-user ?rs ?c)
-      (right-support-used ?rs)
-      (when (right-support-user ?ls ?prev)
-            (and (right-of ?prev ?c) (slot-free ?prev ?c)))
       (increase (total-cost) 1)
+      ; Unlock row-2 cubes: each needs both supports stable
+      (when (and (= ?c c1) (stable c2)) (can-place c5))
+      (when (and (= ?c c2) (stable c1)) (can-place c5))
+      (when (and (= ?c c2) (stable c3)) (can-place c6))
+      (when (and (= ?c c3) (stable c2)) (can-place c6))
+      (when (and (= ?c c3) (stable c4)) (can-place c7))
+      (when (and (= ?c c4) (stable c3)) (can-place c7))
+      ; Unlock row-3 cubes
+      (when (and (= ?c c5) (stable c6)) (can-place c8))
+      (when (and (= ?c c6) (stable c5)) (can-place c8))
+      (when (and (= ?c c6) (stable c7)) (can-place c9))
+      (when (and (= ?c c7) (stable c6)) (can-place c9))
+      ; Unlock top cube
+      (when (and (= ?c c8) (stable c9)) (can-place c10))
+      (when (and (= ?c c9) (stable c8)) (can-place c10))
    )
 )
 
